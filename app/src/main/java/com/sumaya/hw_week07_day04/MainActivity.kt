@@ -11,16 +11,19 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sumaya.hw_week06_day05.adapter.MovieAdapter
 import com.sumaya.hw_week06_day05.ui.MainVM
 import com.sumaya.hw_week07_day04.R
+import com.sumaya.hw_week07_day04.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var moviesRV: RecyclerView
+    private lateinit var binding: ActivityMainBinding
+
 
     private val vm by lazy {
 
@@ -32,15 +35,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
 
 
 
         sharedPreferences =
             this.getSharedPreferences(" The Movie DB Search Preference", Context.MODE_PRIVATE)
 
-        moviesRV = findViewById(R.id.rv_movies)
-        moviesRV.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+        binding.rvMovies.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
 
         loadMovie()
 
@@ -53,12 +56,12 @@ class MainActivity : AppCompatActivity() {
 
             if (query.isNullOrEmpty()) {
 
-                moviesRV.adapter = MovieAdapter(it.results)
+                binding.rvMovies.adapter = MovieAdapter(it.results)
 
             }else {
 
                 //update after search
-                moviesRV.swapAdapter(MovieAdapter(it.results), false)
+                binding.rvMovies.swapAdapter(MovieAdapter(it.results), false)
             }
             Log.d(" The Movie DB main Response", it.results.toString())
         })
