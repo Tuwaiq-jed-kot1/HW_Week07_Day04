@@ -1,4 +1,4 @@
-package com.sumaya.hw_week07_day04
+package com.sumaya.hw_week06_day05
 
 import org.junit.Test
 
