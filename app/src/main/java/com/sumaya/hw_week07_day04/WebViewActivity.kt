@@ -21,12 +21,13 @@ class WebViewActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
         progressBar = findViewById(R.id.progressBar)
         progressBar.max = 100
-        val moviesID:String? = intent.getStringExtra("id")
+
+        val movieID:String? = intent.getStringExtra("id")
 
 
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
-        webView.loadUrl("https://www.themoviedb.org/movie/" + moviesID)
+        webView.loadUrl("https://www.themoviedb.org/movie/" + movieID)
 
         //UI design
         webView.webChromeClient = object : WebChromeClient(){

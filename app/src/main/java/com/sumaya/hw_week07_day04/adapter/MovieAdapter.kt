@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.sumaya.hw_week06_day05.WebViewActivity
 import com.sumaya.hw_week07_day04.R
 import com.sumaya.hw_week07_day04.databinding.ItemRecyclerviewBinding
 import com.sumaya.hw_week07_day04.viewmodel.VMMovie
+import kotlin.coroutines.coroutineContext
 
 
 class MovieAdapter(val moviesData: List<Results>) : RecyclerView.Adapter<CustomHolder>() {
@@ -32,6 +34,8 @@ class MovieAdapter(val moviesData: List<Results>) : RecyclerView.Adapter<CustomH
     override fun onBindViewHolder(holder: CustomHolder, position: Int) {
         val movies = moviesData[position]
         holder.bind(movies)
+
+
     }
 
     override fun getItemCount(): Int {
@@ -52,6 +56,17 @@ class CustomHolder(var binding: ItemRecyclerviewBinding) : RecyclerView.ViewHold
 
         binding.movie?.vmMovie = movie
 
+        binding.idImage.setOnClickListener {
+            val i = Intent(
+                binding.imageView.context, WebViewActivity::class.java
+            ).apply {
+                putExtra("id", "${movie.id.toString()}")
+            }
+          itemView.context.startActivity(i)
+        }
+
+
     }
+
 
 }
