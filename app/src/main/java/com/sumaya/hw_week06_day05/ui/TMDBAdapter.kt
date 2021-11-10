@@ -45,6 +45,6 @@ class CustomHolder(val binding: TmdbRecyclerViewBinding) :
     //    val imageIV: ImageView = itemView.findViewById(R.id.ivFlickr)
     fun bind(movie: Results) {
         binding.movie?.vmMovie = movie
-        //binding.movieImageIV.load(movie.poster_path)
+        binding.movieImageIV.load("https://image.tmdb.org/t/p/w500" + movie.poster_path)
     }
 }
