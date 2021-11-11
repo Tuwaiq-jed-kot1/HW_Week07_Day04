@@ -1,8 +1,7 @@
 # Movie Project
 ---
-## Part One - Data Binding and MVVM
+## Part One - WebView Moive.
 ---
-- Improve your code of Movie Project `(last version which is HW_Week07_Day02)` and add some concepts that you learned today:
-   - Data Binding.
-   - Model–View–ViewModel (MVVM).
+Add a new feature to the Movie project assignment, where can the app display the web page of a specific movie when the user clicks on that movie.
+You will use this URL to display web page of movie based on it's ID: `https://www.themoviedb.org/movie/ID`.
 
