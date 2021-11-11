@@ -35,10 +35,11 @@ class CustomHolder (val binding :RvItemBinding):RecyclerView.ViewHolder(binding.
         binding.vm = PhotosViewModel()
     }
     fun bind(movie: Results) {
+        binding.vm?.vmPhoto= movie
         binding.imagePoster.load("https://image.tmdb.org/t/p/w500"+movie.poster_path)
-       binding.txtTitle
-        binding.txDate
-        binding.txtVote
+        binding.txtTitle.text=movie.title
+        binding.txDate.text=movie.release_date
+        binding.txtVote.text=movie.vote_average.toString()
         binding.imagePoster.setOnClickListener{
             val intent = Intent(binding.imagePoster.context,WebView::class.java)
             val URL_KEY="URL"
