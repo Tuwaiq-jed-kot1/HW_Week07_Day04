@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="movie"
+            type="com.sumaya.hw_week07_day04.data.models.vm.MovieVM" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#362560">
+
+
+    <ImageView
+        android:id="@+id/MoviePoster"
+        android:layout_width="151dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="12dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@+id/MovieTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/MovieTitle"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:text="@{movie.title}"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MoviePoster" />
+
+    <TextView
+        android:id="@+id/MovieDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@{movie.date}"
+        android:textColor="#787676"
+        app:layout_constraintBottom_toTopOf="@+id/ratingStar"
+        app:layout_constraintStart_toStartOf="@+id/MovieTitle"
+        app:layout_constraintTop_toBottomOf="@+id/MovieTitle" />
+
+    <TextView
+        android:id="@+id/MovieRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="197dp"
+        android:text="@{movie.rate.toString()}"
+        android:textColor="#9C9B9B"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ratingStar"
+        app:layout_constraintTop_toBottomOf="@+id/MovieDate" />
+
+    <ImageView
+        android:id="@+id/ratingStar"
+        android:layout_width="17dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginBottom="18dp"
+        android:background="@drawable/ic_baseline_star_rate_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </layout>
