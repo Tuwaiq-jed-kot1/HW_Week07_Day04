@@ -9,15 +9,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.sumaya.hw_week06_day05.data.network.MoviesAdapter
 import com.sumaya.hw_week06_day05.R
+import com.sumaya.hw_week06_day05.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 //for week7
     private lateinit var moviesRV : RecyclerView
+    private lateinit var binding: ActivityMainBinding
     private val vm by lazy {
         ViewModelProvider(this).get(MainVM::class.java)
     }
@@ -27,11 +30,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding.rvMovies.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
-        moviesRV = findViewById(R.id.rvMovies)
-        moviesRV.layoutManager = StaggeredGridLayoutManager(2 ,1 )
         sharedPreferences = this.getSharedPreferences("moviesSearchSharePreferences", Context.MODE_PRIVATE)
-
 
         loadMovies()
     }
@@ -39,11 +41,11 @@ class MainActivity : AppCompatActivity() {
     private fun loadMovies(query: String? = null) {
         vm.fetchInterestingList(query).observe(this, {
             if(query.isNullOrEmpty()){
-                moviesRV.adapter = MoviesAdapter(it.results)
+                binding.rvMovies.adapter = MoviesAdapter(it.results)
             }else{
                 //to start from the begining of the screen
-                moviesRV.scrollToPosition(0)
-                moviesRV.swapAdapter(MoviesAdapter(it.results), false)
+                binding.rvMovies.scrollToPosition(0)
+                binding.rvMovies.swapAdapter(MoviesAdapter(it.results), false)
             }
             Log.d("Flicker main Response", it.results.toString())
         })
