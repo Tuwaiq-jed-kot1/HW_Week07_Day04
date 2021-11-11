@@ -18,6 +18,7 @@ import com.sumaya.hw_week07_day04.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     //private lateinit var moviesRV: RecyclerView
+    private lateinit var binding:ActivityMainBinding
     private val vm by lazy {
         ViewModelProvider(this).get(MainVM::class.java)
     }
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
+         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
 
         //moviesRV = findViewById(R.id.recyclerView)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadMoviesData(query: String? = null) {
-        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
 
         vm.fetchInterestingList(query).observe(this, {
             if(query.isNullOrEmpty()){
